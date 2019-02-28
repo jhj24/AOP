@@ -1,19 +1,20 @@
 package com.jhj.aop;
 
-import android.support.v7.app.AppCompatActivity;
+import android.Manifest;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.jhj.aop.annotation.Async;
 import com.jhj.aop.annotation.Main;
-
-import org.w3c.dom.Text;
+import com.jhj.aop.annotation.Permissions;
 
 public class MainActivity extends AppCompatActivity {
 
     private TextView textView;
+    private String[] phoneState = new String[]{Manifest.permission.READ_PHONE_STATE};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Button button = findViewById(R.id.button);
+        Button btnPermissions = findViewById(R.id.btn_permissions);
         textView = findViewById(R.id.textView);
 
 
@@ -30,6 +32,15 @@ public class MainActivity extends AppCompatActivity {
                 print();
             }
         });
+
+        btnPermissions.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        request();
+                    }
+                }
+        );
 
 
         //一步方法不能返回同步返回值
@@ -50,6 +61,11 @@ public class MainActivity extends AppCompatActivity {
          * 性能统计
          * 缓存
          */
+    }
+
+    @Permissions({"相机", "内存"})
+    public void request() {
+        textView.setText("111");
     }
 
     @Async
