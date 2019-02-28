@@ -31,7 +31,7 @@ public class PermissionsAspect {
                                 }
                             } else {
                                 for (String deniedPermission : deniedPermissions) {
-                                    Toast.makeText(activity, "", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(activity, deniedPermission + "请求失败", Toast.LENGTH_SHORT).show();
                                     break;
                                 }
                             }

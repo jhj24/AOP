@@ -20,10 +20,18 @@
     <Button
         android:id="@+id/button"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:text="线程切换" />
 
     <Button
         android:id="@+id/btn_permissions"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:text="权限请求" />
+
+    <Button
+        android:id="@+id/btn_statistics"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="方法运行时间统计" />
 </LinearLayout>

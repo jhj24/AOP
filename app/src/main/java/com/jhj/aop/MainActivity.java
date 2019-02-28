@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.jhj.aop.annotation.Async;
 import com.jhj.aop.annotation.Main;
 import com.jhj.aop.annotation.Permissions;
+import com.jhj.aop.annotation.TimeStatistics;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
         Button button = findViewById(R.id.button);
         Button btnPermissions = findViewById(R.id.btn_permissions);
+        Button btnStatistics = findViewById(R.id.btn_statistics);
         textView = findViewById(R.id.textView);
 
 
@@ -38,6 +40,15 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         request();
+                    }
+                }
+        );
+
+        btnStatistics.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        statistics();
                     }
                 }
         );
@@ -63,10 +74,13 @@ public class MainActivity extends AppCompatActivity {
          */
     }
 
-    @Permissions({"相机", "内存"})
-    public void request() {
-        textView.setText("111");
+    @TimeStatistics
+    private void statistics() {
+        for (int i=0;i<10000000;i++){
+
+        }
     }
+
 
     @Async
     private void print() {
@@ -85,4 +99,10 @@ public class MainActivity extends AppCompatActivity {
     private void a(int i) {
         textView.setText(i + "");
     }
+
+    @Permissions({Manifest.permission.READ_PHONE_STATE, Manifest.permission.CAMERA})
+    public void request() {
+        textView.setText("111");
+    }
+
 }
